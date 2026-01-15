@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   print_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/15 14:17:59 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/15 15:23:33 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/01/15 14:31:05 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/01/15 15:42:40 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int argc, char *argv[])
+void	print_error(char *error)
 {
-	if (check_arguments(argc, argv) == false)
-	{
-		print_error(ARGUMENT_ERROR);
-		return (EXIT_FAILURE);
-	}
-	return (EXIT_SUCCESS);
+	ft_putstr_fd("\033[0;91m", STDERR_FILENO);
+	ft_putendl_fd("ERROR", STDERR_FILENO);
+	ft_putstr_fd("\033[0m", STDERR_FILENO);
+	ft_putendl_fd(error, STDERR_FILENO);
 }

@@ -1,23 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: stanaka2 < stanaka2@student.42tokyo.jp>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/15 14:17:59 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/15 15:23:33 by stanaka2         ###   ########.fr       */
+/*   Created: 2025/04/29 19:55:21 by stanaka2          #+#    #+#             */
+/*   Updated: 2025/04/29 20:36:25 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
-
-int	main(int argc, char *argv[])
+int	ft_isspace(int c)
 {
-	if (check_arguments(argc, argv) == false)
-	{
-		print_error(ARGUMENT_ERROR);
-		return (EXIT_FAILURE);
-	}
-	return (EXIT_SUCCESS);
+	return (c == ' ' || c == '\f' || c == '\n' || \
+			c == '\r' || c == '\t' || c == '\v');
 }

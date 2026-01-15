@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   check_arguments.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/15 14:17:59 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/15 15:23:33 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/01/15 14:59:29 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/01/15 15:17:47 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#ifndef CHECK_ARGUMENTS_H
+# define CHECK_ARGUMENTS_H
 
-int	main(int argc, char *argv[])
-{
-	if (check_arguments(argc, argv) == false)
-	{
-		print_error(ARGUMENT_ERROR);
-		return (EXIT_FAILURE);
-	}
-	return (EXIT_SUCCESS);
-}
+bool	check_arguments(int argc, char *argv[]);
+bool	is_int(char *str);
+
+#endif

@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_abs_ulong.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/15 14:17:59 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/15 15:23:33 by stanaka2         ###   ########.fr       */
+/*   Created: 2025/06/11 09:01:23 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/01/15 15:33:37 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
-
-int	main(int argc, char *argv[])
+unsigned long	ft_abs_ulong(long n)
 {
-	if (check_arguments(argc, argv) == false)
-	{
-		print_error(ARGUMENT_ERROR);
-		return (EXIT_FAILURE);
-	}
-	return (EXIT_SUCCESS);
+	unsigned long	un;
+
+	un = n;
+	if (n < 0)
+		un = -n;
+	return (un);
 }

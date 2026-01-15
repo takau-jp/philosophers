@@ -1,23 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/15 14:17:59 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/15 15:23:33 by stanaka2         ###   ########.fr       */
+/*   Created: 2025/04/25 13:07:29 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/01/15 15:28:46 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int argc, char *argv[])
+void	ft_putendl_fd(char *s, int fd)
 {
-	if (check_arguments(argc, argv) == false)
+	size_t	len;
+	size_t	chunk;
+	ssize_t	write_res;
+
+	if (!s)
+		return ;
+	len = ft_strlen(s);
+	while (len)
 	{
-		print_error(ARGUMENT_ERROR);
-		return (EXIT_FAILURE);
+		chunk = WRITE_BLOCK_SIZE;
+		if (len < WRITE_BLOCK_SIZE)
+			chunk = len;
+		write_res = write(fd, s, chunk);
+		if (write_res <= 0)
+			return ;
+		s += write_res;
+		len -= write_res;
 	}
-	return (EXIT_SUCCESS);
+	write(fd, "\n", 1);
 }

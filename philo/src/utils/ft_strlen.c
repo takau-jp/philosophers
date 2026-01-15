@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/15 14:17:59 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/15 15:23:33 by stanaka2         ###   ########.fr       */
+/*   Created: 2025/04/25 15:38:52 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/01/15 15:30:02 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int argc, char *argv[])
+size_t	ft_strlen(const char *s)
 {
-	if (check_arguments(argc, argv) == false)
-	{
-		print_error(ARGUMENT_ERROR);
-		return (EXIT_FAILURE);
-	}
-	return (EXIT_SUCCESS);
+	size_t	len;
+
+	len = 0;
+	while (*(s++))
+		len++;
+	return (len);
 }

@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parse_arguments.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/15 14:17:59 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/16 17:26:51 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/01/15 14:59:29 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/01/15 23:04:29 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#ifndef PARSE_ARGUMENTS_H
+# define PARSE_ARGUMENTS_H
 
-int	main(int argc, char *argv[])
-{
-	t_ctx	ctx;
+bool	parse_arguments(t_ctx *ctx, int argc, char *argv[]);
+bool	is_int(char *str);
 
-	ft_bzero(&ctx, sizeof(t_ctx));
-	if (parse_arguments(&ctx, argc, argv) == false)
-		return (EXIT_FAILURE);
-	if (init_ctx(&ctx) == false)
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
-}
+#endif

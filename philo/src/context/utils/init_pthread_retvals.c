@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_pthread_retvals.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/15 14:17:59 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/16 17:26:51 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/01/16 16:51:04 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/01/16 16:52:02 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int argc, char *argv[])
+bool	init_pthread_retvals(t_ctx *ctx)
 {
-	t_ctx	ctx;
-
-	ft_bzero(&ctx, sizeof(t_ctx));
-	if (parse_arguments(&ctx, argc, argv) == false)
-		return (EXIT_FAILURE);
-	if (init_ctx(&ctx) == false)
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
+	ctx->pthread_retvals = (void **)malloc(sizeof(void *) * ctx->n_philos);
+	if (ctx->pthread_retvals == NULL)
+	{
+		print_error(ERROR_MSG_MALLOC);
+		return (false);
+	}
+	return (true);
 }

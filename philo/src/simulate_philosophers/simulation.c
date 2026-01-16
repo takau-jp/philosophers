@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   simulation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/15 14:17:59 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/16 17:26:51 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/01/16 17:18:46 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/01/16 17:23:57 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int argc, char *argv[])
+void	*simulation(void *arg)
 {
-	t_ctx	ctx;
-
-	ft_bzero(&ctx, sizeof(t_ctx));
-	if (parse_arguments(&ctx, argc, argv) == false)
-		return (EXIT_FAILURE);
-	if (init_ctx(&ctx) == false)
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
+	
 }

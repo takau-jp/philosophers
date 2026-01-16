@@ -1,30 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_arguments.c                                  :+:      :+:    :+:   */
+/*   init_philos.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/15 14:51:02 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/15 15:44:22 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/01/16 16:42:50 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/01/16 17:07:11 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-bool	check_arguments(int argc, char *argv[])
+bool	init_philos(t_ctx *ctx)
 {
-	if (!(argc == 5 || argc == 6))
+	int	i;
+
+	ctx->philos = (t_philo *)malloc(sizeof(t_philo) * ctx->n_philos);
+	if (ctx->philos == NULL)
+	{
+		print_error(ERROR_MSG_MALLOC);
 		return (false);
-	if (is_int(argv[1]) == false || ft_atoi(argv[1]) <= 0)
-		return (false);
-	if (is_int(argv[2]) == false || ft_atoi(argv[2]) <= 0)
-		return (false);
-	if (is_int(argv[3]) == false || ft_atoi(argv[3]) <= 0)
-		return (false);
-	if (is_int(argv[4]) == false || ft_atoi(argv[4]) <= 0)
-		return (false);
-	if (argc == 6 && (is_int(argv[5]) == false || ft_atoi(argv[5]) <= 0))
-		return (false);
+	}
+	i = 0;
+	while (i < ctx->n_philos)
+	{
+		ctx->philos[i].index = i;
+		ctx->philos[i].right = &(ctx->forks[i]);
+		if (i != ctx->n_philos - 1)
+			ctx->philos[i].left = &(ctx->forks[i + 1]);
+		else
+			ctx->philos[i].left = &(ctx->forks[0]);
+		ctx->philos[i].eat_count = 0;
+		i++;
+	}
 	return (true);
 }

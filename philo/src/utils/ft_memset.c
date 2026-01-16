@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/15 14:17:59 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/16 17:26:51 by stanaka2         ###   ########.fr       */
+/*   Created: 2025/04/25 00:09:19 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/01/15 23:09:35 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int argc, char *argv[])
+void	*ft_memset(void *s, int c, size_t n)
 {
-	t_ctx	ctx;
+	unsigned char	*mem;
 
-	ft_bzero(&ctx, sizeof(t_ctx));
-	if (parse_arguments(&ctx, argc, argv) == false)
-		return (EXIT_FAILURE);
-	if (init_ctx(&ctx) == false)
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
+	mem = (unsigned char *)s;
+	c = (unsigned char)c;
+	while (n--)
+	{
+		*mem = c;
+		mem++;
+	}
+	return (s);
 }

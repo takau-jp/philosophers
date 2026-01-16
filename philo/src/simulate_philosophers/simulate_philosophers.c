@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_arguments.h                                  :+:      :+:    :+:   */
+/*   simulate_philosophers.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/15 14:59:29 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/15 15:17:47 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/01/16 17:25:07 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/01/16 17:26:37 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECK_ARGUMENTS_H
-# define CHECK_ARGUMENTS_H
+#include "philo.h"
 
-bool	check_arguments(int argc, char *argv[]);
-bool	is_int(char *str);
+bool	simulate_philosophers(t_ctx *ctx)
+{
+	
+}
 
-#endif

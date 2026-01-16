@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/24 09:06:59 by stanaka2          #+#    #+#              #
-#    Updated: 2026/01/15 15:35:32 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/01/16 17:04:09 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,9 +62,10 @@ INCLUDE		= -I $(INCLUDE_DIR)
 
 SRC_DIRS	=	src \
 				$(addprefix src/, \
-					check_arguments check_arguments/utils \
+					parse_arguments parse_arguments/utils \
 					error \
 					utils \
+					context context/utils \
 				)
 
 
@@ -75,16 +76,22 @@ SRC_DIRS	=	src \
 
 SRCS	=	main.c
 
-# check_arguments
-SRCS	+=	check_arguments.c \
+# parse_arguments
+SRCS	+=	parse_arguments.c \
 			is_int.c
 
 # error
 SRCS	+=	print_error.c
 
 # utils
-SRCS	+=	ft_abs_ulong.c		ft_atoi.c		ft_isdigit.c		ft_isspace.c \
-			ft_putendl_fd.c		ft_putstr_fd.c	ft_strlen.c
+SRCS	+=	ft_abs_ulong.c		ft_atoi.c		ft_bzero.c		ft_isdigit.c \
+			ft_isspace.c		ft_memset.c		ft_putendl_fd.c		ft_putstr_fd.c \
+			ft_strlen.c
+
+# context
+SRCS	+=	init_ctx.c		clear_ctx.c \
+			init_forks.c		init_mutex_data.c		init_philos.c		init_pthread_retvals.c \
+			init_start_time.c
 
 
 # -------------------------- #

@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_start_time.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/15 14:17:59 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/16 17:26:51 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/01/16 16:53:38 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/01/16 16:54:25 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int argc, char *argv[])
+bool	init_start_time(t_ctx *ctx)
 {
-	t_ctx	ctx;
-
-	ft_bzero(&ctx, sizeof(t_ctx));
-	if (parse_arguments(&ctx, argc, argv) == false)
-		return (EXIT_FAILURE);
-	if (init_ctx(&ctx) == false)
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
+	if (gettimeofday(&(ctx->start_time), NULL) != 0)
+	{
+		print_error(ERROR_MSG_GET_TIMEOFDAY);
+		return (false);
+	}
+	return (true);
 }

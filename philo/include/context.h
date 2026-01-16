@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   context.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/15 14:17:59 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/16 17:26:51 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/01/16 16:56:04 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/01/16 16:58:16 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#ifndef CONTEXT_H
+# define CONTEXT_H
 
-int	main(int argc, char *argv[])
-{
-	t_ctx	ctx;
+bool	init_ctx(t_ctx *ctx);
+bool	init_mutex_data(t_ctx *ctx);
+bool	init_forks(t_ctx *ctx);
+bool	init_philos(t_ctx *ctx);
+bool	init_pthread_retvals(t_ctx *ctx);
+bool	init_start_time(t_ctx *ctx);
+void	clear_ctx(t_ctx *ctx);
 
-	ft_bzero(&ctx, sizeof(t_ctx));
-	if (parse_arguments(&ctx, argc, argv) == false)
-		return (EXIT_FAILURE);
-	if (init_ctx(&ctx) == false)
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
-}
+#endif

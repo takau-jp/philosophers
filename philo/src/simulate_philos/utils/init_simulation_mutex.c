@@ -1,19 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_arguments.h                                  :+:      :+:    :+:   */
+/*   init_simulation_mutex.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/15 14:59:29 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/17 18:10:38 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/01/16 16:43:36 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/01/17 18:56:21 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSE_ARGUMENTS_H
-# define PARSE_ARGUMENTS_H
+#include "philo.h"
 
-bool	parse_arguments(int argc, char *argv[], t_settings *settings);
-bool	is_int(char *str);
-
-#endif
+bool	init_simulation_mutex(t_simulation *simulation)
+{
+	if (pthread_mutex_init(&(simulation->state_mutex), NULL) != 0)
+	{
+		print_error(ERROR_MSG_INIT_MUTEX);
+		return (false);
+	}
+	if (pthread_mutex_init(&(simulation->print_mutex), NULL) != 0)
+	{
+		pthread_mutex_destroy(&(simulation->state_mutex));
+		print_error(ERROR_MSG_INIT_MUTEX);
+		return (false);
+	}
+	return (true);
+}

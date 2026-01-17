@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 14:22:02 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/16 16:58:44 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/01/17 20:26:08 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@
 # include "error.h"
 # include "parse_arguments.h"
 # include "context.h"
+# include "simulate_philos.h"
+# include "philo_routine.h"
 
 # ifndef WRITE_BLOCK_SIZE
 #  define WRITE_BLOCK_SIZE 16384

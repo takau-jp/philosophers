@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_mutex_data.c                                  :+:      :+:    :+:   */
+/*   wait_start.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/16 16:43:36 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/16 22:19:58 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/01/17 20:16:42 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/01/17 22:35:04 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-bool	init_mutex_data(t_ctx *ctx)
+bool	wait_start(t_philo *philo)
 {
-	if (pthread_mutex_init(&(ctx->monitor_mutex), NULL) != 0)
+	pthread_mutex_lock(&(philo->simulation->state_mutex));
+	if (philo->simulation->state != STATE_GOING)
 	{
-		print_error(ERROR_MSG_INIT_MUTEX);
+		pthread_mutex_unlock(&(philo->simulation->state_mutex));
 		return (false);
 	}
-	// ctx->monitor_mutex = PTHREAD_MUTEX_INITIALIZER;
-	if (pthread_mutex_init(&(ctx->print_mutex), NULL) != 0)
-	{
-		pthread_mutex_destroy(&(ctx->monitor_mutex));
-		print_error(ERROR_MSG_INIT_MUTEX);
-		return (false);
-	}
+	pthread_mutex_unlock(&(philo->simulation->state_mutex));
 	return (true);
 }

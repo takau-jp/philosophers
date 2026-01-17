@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_arguments.h                                  :+:      :+:    :+:   */
+/*   philo_routine.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/15 14:59:29 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/17 18:10:38 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/01/17 20:25:15 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/01/17 22:21:57 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSE_ARGUMENTS_H
-# define PARSE_ARGUMENTS_H
+#ifndef PHILO_ROUTINE_H
+# define PHILO_ROUTINE_H
 
-bool	parse_arguments(int argc, char *argv[], t_settings *settings);
-bool	is_int(char *str);
+void	*philo_routine(void *arg);
+bool	wait_start(t_philo *philo);
 
 #endif

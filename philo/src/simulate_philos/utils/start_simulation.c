@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_arguments.h                                  :+:      :+:    :+:   */
+/*   start_simulation.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/15 14:59:29 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/17 18:10:38 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/01/16 16:53:38 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/01/17 22:29:33 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSE_ARGUMENTS_H
-# define PARSE_ARGUMENTS_H
+#include "philo.h"
 
-bool	parse_arguments(int argc, char *argv[], t_settings *settings);
-bool	is_int(char *str);
-
-#endif
+bool	start_simulation(t_simulation *simulation)
+{
+	if (gettimeofday(&(simulation->start_time), NULL) != 0)
+	{
+		print_error(ERROR_MSG_GET_TIMEOFDAY);
+		return (false);
+	}
+	simulation->state = STATE_GOING;
+	pthread_mutex_unlock(&(simulation->state_mutex));
+	return (true);
+}

@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/24 09:06:59 by stanaka2          #+#    #+#              #
-#    Updated: 2026/01/16 17:04:09 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/01/17 22:28:57 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,6 +66,8 @@ SRC_DIRS	=	src \
 					error \
 					utils \
 					context context/utils \
+					simulate_philos simulate_philos/utils \
+					philo_routine philo_routine/utils \
 				)
 
 
@@ -90,8 +92,16 @@ SRCS	+=	ft_abs_ulong.c		ft_atoi.c		ft_bzero.c		ft_isdigit.c \
 
 # context
 SRCS	+=	init_ctx.c		clear_ctx.c \
-			init_forks.c		init_mutex_data.c		init_philos.c		init_pthread_retvals.c \
-			init_start_time.c
+			init_forks.c		init_philos.c		init_pthread_retvals.c
+			
+
+# simulate_philos
+SRCS	+=	create_threads.c		join_threads.c		simulate_philos.c \
+			init_simulation_mutex.c		start_simulation.c
+
+# philo_routine
+SRCS	+=	philo_routine.c \
+			wait_start.c
 
 
 # -------------------------- #

@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   simulate_philosophers.c                            :+:      :+:    :+:   */
+/*   philo_routine.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/16 17:25:07 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/16 17:26:37 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/01/17 20:05:13 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/01/17 22:35:27 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-bool	simulate_philosophers(t_ctx *ctx)
+void	*philo_routine(void *arg)
 {
+	t_philo	*philo;
 	
+	philo = (t_philo *)arg;
+	if (wait_start(philo) == false)
+		return (NULL);
+	return (NULL);
 }
-

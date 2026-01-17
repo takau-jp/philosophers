@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 18:30:31 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/17 22:33:54 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/01/17 22:57:44 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 bool	init_simulation_mutex(t_simulation *simulation);
 bool	create_threads(t_ctx *ctx, int n_philos, t_simulation *simulation);
 void	join_threads(t_ctx *ctx, int n_philos);
-bool	simulate_philos(t_ctx *ctx, int n_philos, t_simulation *simulation);
+bool	simulate_philos(t_ctx *ctx, t_settings settings, t_simulation *simulation);
 bool	start_simulation(t_simulation *simulation);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 15:46:51 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/17 18:46:25 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/01/17 23:28:13 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ enum e_state
 	STATE_READY,
 	STATE_GOING,
 	STATE_END,
+	STATE_DEAD,
+	STATE_ERROR,
 };
 
 struct s_simulation
@@ -42,6 +44,8 @@ struct s_simulation
 	struct timeval	start_time;
 	pthread_mutex_t	state_mutex;
 	t_state			state;
+	pthread_mutex_t	count_mutex;
+	int				finished_philos_count;
 	pthread_mutex_t	print_mutex;
 };
 

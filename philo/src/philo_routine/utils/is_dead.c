@@ -1,29 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   is_dead.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/15 14:17:59 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/17 22:56:30 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/01/17 23:52:12 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/01/17 23:55:00 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int argc, char *argv[])
+bool	is_dead(t_philo *philo)
 {
-	t_ctx			ctx;
-	t_settings		settings;
-	t_simulation	simulation;
-
-	if (parse_arguments(argc, argv, &settings) == false)
-		return (EXIT_FAILURE);
-	ft_bzero(&ctx, sizeof(t_ctx));
-	if (init_ctx(&ctx, &settings, &simulation) == false)
-		return (EXIT_FAILURE);
-	simulate_philos(&ctx, settings, &simulation);
-	clear_ctx(&ctx, settings.n_philos);
-	return (EXIT_SUCCESS);
+	
 }

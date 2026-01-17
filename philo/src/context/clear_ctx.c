@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   clear_ctx.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/15 14:35:03 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/15 23:09:54 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/01/16 16:41:28 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/01/17 18:43:04 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "philo.h"
 
-unsigned long	ft_abs_ulong(long n);
-int				ft_atoi(const char *nptr);
-void			ft_bzero(void *s, size_t n);
-int				ft_isspace(int c);
-int				ft_isdigit(int c);
-void			*ft_memset(void *s, int c, size_t n);
-void			ft_putendl_fd(char *s, int fd);
-void			ft_putstr_fd(char *s, int fd);
-size_t			ft_strlen(const char *s);
+void	clear_ctx(t_ctx *ctx, int n_philos)
+{
+	int	i;
 
-#endif
+	free(ctx->philos);
+	free(ctx->pthread_retvals);
+	if (ctx->forks != NULL)
+	{
+		i = 0;
+		while (i < n_philos)
+		{
+			pthread_mutex_destroy(&(ctx->forks[i]));
+			i++;
+		}
+		free(ctx->forks);
+	}
+}

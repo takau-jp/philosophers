@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   init_pthread_retvals.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/15 14:35:03 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/15 23:09:54 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/01/16 16:51:04 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/01/17 22:32:11 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "philo.h"
 
-unsigned long	ft_abs_ulong(long n);
-int				ft_atoi(const char *nptr);
-void			ft_bzero(void *s, size_t n);
-int				ft_isspace(int c);
-int				ft_isdigit(int c);
-void			*ft_memset(void *s, int c, size_t n);
-void			ft_putendl_fd(char *s, int fd);
-void			ft_putstr_fd(char *s, int fd);
-size_t			ft_strlen(const char *s);
-
-#endif
+bool	init_pthread_retvals(t_ctx *ctx, int n_philos)
+{
+	ctx->pthread_retvals = (void **)malloc(sizeof(void *) * n_philos);
+	if (ctx->pthread_retvals == NULL)
+	{
+		print_error(ERROR_MSG_MALLOC);
+		return (false);
+	}
+	return (true);
+}

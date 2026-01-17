@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   init_simulation_mutex.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/15 14:35:03 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/15 23:09:54 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/01/16 16:43:36 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/01/17 18:56:21 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "philo.h"
 
-unsigned long	ft_abs_ulong(long n);
-int				ft_atoi(const char *nptr);
-void			ft_bzero(void *s, size_t n);
-int				ft_isspace(int c);
-int				ft_isdigit(int c);
-void			*ft_memset(void *s, int c, size_t n);
-void			ft_putendl_fd(char *s, int fd);
-void			ft_putstr_fd(char *s, int fd);
-size_t			ft_strlen(const char *s);
-
-#endif
+bool	init_simulation_mutex(t_simulation *simulation)
+{
+	if (pthread_mutex_init(&(simulation->state_mutex), NULL) != 0)
+	{
+		print_error(ERROR_MSG_INIT_MUTEX);
+		return (false);
+	}
+	if (pthread_mutex_init(&(simulation->print_mutex), NULL) != 0)
+	{
+		pthread_mutex_destroy(&(simulation->state_mutex));
+		print_error(ERROR_MSG_INIT_MUTEX);
+		return (false);
+	}
+	return (true);
+}

@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_pthread_retvals.c                             :+:      :+:    :+:   */
+/*   check_simulation_state.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/16 16:51:04 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/17 22:32:11 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/01/18 19:02:56 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/01/18 19:03:22 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-bool	init_pthread_retvals(t_ctx *ctx, int n_philos)
+bool	check_simulation_state(t_philo *philo)
 {
-	ctx->pthread_retvals = (void **)malloc(sizeof(void *) * n_philos);
-	if (ctx->pthread_retvals == NULL)
+	pthread_mutex_lock(&(philo->simulation->state_mutex));
+	if (philo->simulation->state != STATE_GOING)
 	{
-		print_error(ERROR_MSG_MALLOC);
+		pthread_mutex_unlock(&(philo->simulation->state_mutex));
 		return (false);
 	}
+	pthread_mutex_unlock(&(philo->simulation->state_mutex));
 	return (true);
 }
+
+

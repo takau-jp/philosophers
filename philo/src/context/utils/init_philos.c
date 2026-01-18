@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 16:42:50 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/17 23:22:38 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/01/18 22:47:46 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,16 @@ bool	init_philos(t_ctx *ctx, t_settings *settings, t_simulation *simulation)
 			ctx->philos[i].left = &(ctx->forks[i + 1]);
 		else
 			ctx->philos[i].left = &(ctx->forks[0]);
-		ctx->philos[i].eat_count = 0;
 		ctx->philos[i].settings = settings;
 		ctx->philos[i].simulation = simulation;
+		if (pthread_mutex_init(&(ctx->philos[i].philo_mutex)) != 0)
+		{
+			while (i-- > 0)
+				pthread_mutex_destroy(&(ctx->philos[i].philo_mutex));
+			free(ctx->philos);
+			return (false);
+		}
+		ctx->philos[i].state = STATE_READY;
 		i++;
 	}
 	return (true);

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 15:46:51 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/17 23:28:13 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/01/18 22:39:27 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,6 @@ struct s_simulation
 	struct timeval	start_time;
 	pthread_mutex_t	state_mutex;
 	t_state			state;
-	pthread_mutex_t	count_mutex;
-	int				finished_philos_count;
-	pthread_mutex_t	print_mutex;
 };
 
 struct s_philo
@@ -55,15 +52,17 @@ struct s_philo
 	pthread_t		thread;
 	pthread_mutex_t	*right;
 	pthread_mutex_t	*left;
-	int64_t			eat_count;
 	t_settings		*settings;
 	t_simulation	*simulation;
+	pthread_mutex_t	philo_mutex;
+	struct timeval	last_meal_time;
+	int64_t			eat_count;
+	t_state			state;
 };
 
 struct s_ctx
 {
 	t_philo			*philos;
-	void			**pthread_retvals;
 	pthread_mutex_t	*forks;
 };
 

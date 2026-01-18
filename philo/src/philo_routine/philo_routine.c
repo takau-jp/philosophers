@@ -6,12 +6,13 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 20:05:13 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/17 23:55:49 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/01/18 22:14:12 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+// This philosopher only thinks about picking up a fork to eat and sleep.
 void	*philo_routine(void *arg)
 {
 	t_philo	*philo;
@@ -21,21 +22,38 @@ void	*philo_routine(void *arg)
 		return (NULL);
 	while (true)
 	{
-		if (check_simulation_state(philo) == false)
-			break ;
-		
+		thinking();
+		eating();
+		sleeping();
 	}
 	return (NULL);
 }
 
-bool	check_simulation_state(t_philo *philo)
+bool	thinking(t_philo *philo, int routine_count)
 {
-	pthread_mutex_lock(&(philo->simulation->state_mutex));
-	if (philo->simulation->state != STATE_GOING)
-	{
-		pthread_mutex_unlock(&(philo->simulation->state_mutex));
+	if (print_thinking() == false)
 		return (false);
+	if (philo->settings->n_philos % 2 == 1)
+	{
+		if (philo->index == routine_count + 1)
+		{
+			if (pass_routine() == false)
+				return (false);
+		}
 	}
-	pthread_mutex_unlock(&(philo->simulation->state_mutex));
+	if (philo->index % 2 == 1)
+	{
+		if (take_fork() == false)
+			return (false);
+		if (take_fork() == false)
+			return (false);
+	}
+	else
+	{
+		if (take_fork() == false)
+			return (false);
+		if (take_fork() == false)
+			return (false);
+	}
 	return (true);
 }

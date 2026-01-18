@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 22:51:16 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/17 23:35:11 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/01/18 21:48:46 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,3 +39,5 @@ bool	monitoring_philos(t_ctx *ctx, t_settings settings, t_simulation *simulation
 		pthread_mutex_unlock(&(simulation->state_mutex));
 	}
 }
+
+

@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/24 09:06:59 by stanaka2          #+#    #+#              #
-#    Updated: 2026/01/18 22:25:52 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/01/21 00:01:20 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,12 +62,12 @@ INCLUDE		= -I $(INCLUDE_DIR)
 
 SRC_DIRS	=	src \
 				$(addprefix src/, \
-					parse_arguments parse_arguments/utils \
+					argument_parsing argument_parsing/utils \
+					cleanup \
+					dining_philosophers_simulation dining_philosophers_simulation/utils \
 					error \
+					initialization \
 					utils \
-					context context/utils \
-					simulate_philos simulate_philos/utils \
-					philo_routine philo_routine/utils \
 				)
 
 
@@ -78,30 +78,28 @@ SRC_DIRS	=	src \
 
 SRCS	=	main.c
 
-# parse_arguments
+# argument_parsing
 SRCS	+=	parse_arguments.c \
 			is_int.c
 
 # error
-SRCS	+=	print_error.c
+SRCS	+=	print_error_log.c
 
 # utils
 SRCS	+=	ft_abs_ulong.c		ft_atoi.c		ft_bzero.c		ft_isdigit.c \
 			ft_isspace.c		ft_memset.c		ft_putendl_fd.c		ft_putstr_fd.c \
 			ft_strlen.c
 
-# context
-SRCS	+=	init_ctx.c		clear_ctx.c \
-			init_forks.c		init_philos.c
-			
+# initialization
+SRCS	+=	initialize.c
 
-# simulate_philos
-SRCS	+=	create_threads.c		join_threads.c		simulate_philos.c \
-			init_simulation_mutex.c		start_simulation.c
+# dining_philosophers_simulation
+SRCS	+=	monitor_philos.c		philo_routine.c		simulate_dining_philosophers.c \
+			eating.c		get_timestamp.c		print_log.c		sleeping.c \
+			thinking.c
 
-# philo_routine
-SRCS	+=	philo_routine.c \
-			wait_start.c
+# cleanup
+SRCS	+=	cleanup.c
 
 
 # -------------------------- #

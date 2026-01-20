@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   simulate_philos.h                                  :+:      :+:    :+:   */
+/*   print_log.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/17 18:30:31 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/17 22:57:44 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/01/19 23:59:55 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/01/20 01:39:20 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SIMULATE_PHILOS_H
-# define SIMULATE_PHILOS_H
+#include "philo.h"
 
-bool	init_simulation_mutex(t_simulation *simulation);
-bool	create_threads(t_ctx *ctx, int n_philos, t_simulation *simulation);
-void	join_threads(t_ctx *ctx, int n_philos);
-bool	simulate_philos(t_ctx *ctx, t_settings settings, t_simulation *simulation);
-bool	start_simulation(t_simulation *simulation);
-
-#endif
+bool	print_log(int64_t timestamp, int philo_id, char *msg)
+{
+	if (printf("%" PRId64 " %d %s\n", timestamp, philo_id, msg) < 0)
+		return (false);
+	return (true);
+}

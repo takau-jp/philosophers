@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   join_threads.c                                     :+:      :+:    :+:   */
+/*   argument_parsing.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/17 16:40:47 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/17 22:30:12 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/01/20 21:45:46 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/01/20 21:51:31 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#ifndef ARGUMENT_PARSING_H
+# define ARGUMENT_PARSING_H
 
-void	join_threads(t_ctx *ctx, int n_philos)
-{
-	int		i;
+bool	parse_arguments(int argc, char *argv[], t_settings *settings);
+bool	is_int(char *str);
 
-	i = 0;
-	while (i < n_philos)
-	{
-		pthread_join(ctx->philos[i].thread, NULL);
-		i++;
-	}
-}
+#endif

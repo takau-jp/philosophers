@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_arguments.h                                  :+:      :+:    :+:   */
+/*   print_error_log.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/15 14:59:29 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/17 18:10:38 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/01/20 23:46:50 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/01/20 23:47:16 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSE_ARGUMENTS_H
-# define PARSE_ARGUMENTS_H
+#include "philo.h"
 
-bool	parse_arguments(int argc, char *argv[], t_settings *settings);
-bool	is_int(char *str);
-
-#endif
+void	print_error_log(char *error)
+{
+	ft_putstr_fd("\033[0;91m", STDERR_FILENO);
+	ft_putendl_fd("ERROR", STDERR_FILENO);
+	ft_putstr_fd("\033[0m", STDERR_FILENO);
+	ft_putendl_fd(error, STDERR_FILENO);
+}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   monitor_philos.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: stanaka2 < stanaka2@student.42tokyo.jp>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 16:54:01 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/21 00:09:29 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/01/21 10:57:34 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	monitor_philos(\
 
 	while (true)
 	{
+		usleep(1000);
 		is_finish = true;
 		if (settings.must_eat_counts == NO_EAT_LIMIT)
 			is_finish = false;

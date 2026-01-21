@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sleeping.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: stanaka2 < stanaka2@student.42tokyo.jp>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 15:47:24 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/21 00:08:51 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/01/21 10:50:48 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ bool	sleeping(t_philo *philo)
 {
 	if (start_sleeping(philo) == false)
 		return (false);
-	usleep(philo->settings->time_to_sleep * 1000);
+	if (smart_sleep(philo, philo->settings->time_to_sleep) == false)
+	{
+		return (false);
+	}
 	return (true);
 }
 
@@ -39,12 +42,12 @@ bool	start_sleeping(t_philo *philo)
 		pthread_mutex_unlock(&(philo->simulation->simulation_mutex));
 		return (false);
 	}
-	if (print_log(timestamp, philo->id, MSG_SLEEP) == false)
-	{
-		philo->is_error = true;
-		pthread_mutex_unlock(&(philo->simulation->simulation_mutex));
-		return (false);
-	}
+	// if (print_log(timestamp, philo->id, MSG_SLEEP) == false)
+	// {
+	// 	philo->is_error = true;
+	// 	pthread_mutex_unlock(&(philo->simulation->simulation_mutex));
+	// 	return (false);
+	// }
 	pthread_mutex_unlock(&(philo->simulation->simulation_mutex));
 	return (true);
 }

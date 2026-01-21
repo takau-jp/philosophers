@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   thinking.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: stanaka2 < stanaka2@student.42tokyo.jp>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 15:46:31 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/21 00:12:49 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/01/21 10:51:08 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,20 @@ bool	thinking(t_philo *philo)
 		if (take_fork(philo, philo->right) == false)
 			return (false);
 		if (take_fork(philo, philo->left) == false)
+		{
+			pthread_mutex_unlock(philo->right);
 			return (false);
+		}
 	}
 	else
 	{
 		if (take_fork(philo, philo->left) == false)
 			return (false);
 		if (take_fork(philo, philo->right) == false)
+		{
+			pthread_mutex_unlock(philo->left);
 			return (false);
+		}
 	}
 	return (true);
 }
@@ -53,12 +59,12 @@ bool	start_thinking(t_philo *philo)
 		pthread_mutex_unlock(&(philo->simulation->simulation_mutex));
 		return (false);
 	}
-	if (print_log(timestamp, philo->id, MSG_THINK) == false)
-	{
-		philo->is_error = true;
-		pthread_mutex_unlock(&(philo->simulation->simulation_mutex));
-		return (false);
-	}
+	// if (print_log(timestamp, philo->id, MSG_THINK) == false)
+	// {
+	// 	philo->is_error = true;
+	// 	pthread_mutex_unlock(&(philo->simulation->simulation_mutex));
+	// 	return (false);
+	// }
 	pthread_mutex_unlock(&(philo->simulation->simulation_mutex));
 	return (true);
 }
@@ -83,13 +89,13 @@ bool	take_fork(t_philo *philo, pthread_mutex_t *fork)
 		pthread_mutex_unlock(fork);
 		return (false);
 	}
-	if (print_log(timestamp, philo->id, MSG_FORK) == false)
-	{
-		philo->is_error = true;
-		pthread_mutex_unlock(&(philo->simulation->simulation_mutex));
-		pthread_mutex_unlock(fork);
-		return (false);
-	}
+	// if (print_log(timestamp, philo->id, MSG_FORK) == false)
+	// {
+	// 	philo->is_error = true;
+	// 	pthread_mutex_unlock(&(philo->simulation->simulation_mutex));
+	// 	pthread_mutex_unlock(fork);
+	// 	return (false);
+	// }
 	pthread_mutex_unlock(&(philo->simulation->simulation_mutex));
 	return (true);
 }

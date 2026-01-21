@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
+#    By: stanaka2 < stanaka2@student.42tokyo.jp>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/24 09:06:59 by stanaka2          #+#    #+#              #
-#    Updated: 2026/01/21 00:01:20 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/01/21 10:26:41 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -96,7 +96,7 @@ SRCS	+=	initialize.c
 # dining_philosophers_simulation
 SRCS	+=	monitor_philos.c		philo_routine.c		simulate_dining_philosophers.c \
 			eating.c		get_timestamp.c		print_log.c		sleeping.c \
-			thinking.c
+			smart_sleep.c		thinking.c
 
 # cleanup
 SRCS	+=	cleanup.c

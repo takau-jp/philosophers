@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_ctx.c                                         :+:      :+:    :+:   */
+/*   get_timestamp.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/15 23:22:49 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/17 22:32:39 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/01/19 23:12:57 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/01/22 02:18:45 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-bool	init_ctx(t_ctx *ctx, t_settings *settings, t_simulation *simulation)
+t_timestamp	get_timestamp(struct timeval base)
 {
-	if (init_forks(ctx, settings->n_philos) == false)
-		return (false);
-	if (init_philos(ctx, settings, simulation) == false)
-	{
-		clear_ctx(ctx, settings->n_philos);
-		return (false);
-	}
-	if (init_pthread_retvals(ctx, settings->n_philos) == false)
-	{
-		clear_ctx(ctx, settings->n_philos);
-		return (false);
-	}
-	return (true);
+	t_timestamp	now;
+	int64_t		second;
+	int64_t		micro_seccond;
+
+	gettimeofday(&(now.timeval), NULL);
+	second = now.timeval.tv_sec - base.tv_sec;
+	micro_seccond = now.timeval.tv_usec - base.tv_usec;
+	now.timestamp = (second * 1000) + (micro_seccond / 1000);
+	return (now);
 }
-
-
-
-
-

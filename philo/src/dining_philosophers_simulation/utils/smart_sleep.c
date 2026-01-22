@@ -1,38 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_threads.c                                   :+:      :+:    :+:   */
+/*   smart_sleep.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/16 17:16:03 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/17 22:30:23 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/01/21 02:25:37 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/01/22 01:27:14 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-bool	create_threads(t_ctx *ctx, int n_philos, t_simulation *simulation)
+bool	smart_sleep(struct timeval base, int64_t ms_time, int64_t time_to_die)
 {
-	t_philo	*philo;
-	int		i;
-
-	i = 0;
-	while (i < n_philos)
+	while (true)
 	{
-		philo = &(ctx->philos[i]);
-		if (pthread_create(&(philo->thread), NULL, philo_routine, philo) != 0)
-		{
-			simulation->state = STATE_END;
-			pthread_mutex_unlock(&(simulation->state_mutex));
-			while (i-- > 0)
-			{
-				philo = &(ctx->philos[i]);
-				pthread_join(philo->thread, NULL);
-			}
+		if (has_time_elapsed(base, time_to_die) == true)
 			return (false);
-		}
-		i++;
+		if (has_time_elapsed(base, ms_time) == true)
+			return (true);
+		usleep(100);
 	}
-	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 14:35:03 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/15 23:09:54 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/01/21 23:43:53 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,8 @@
 
 unsigned long	ft_abs_ulong(long n);
 int				ft_atoi(const char *nptr);
-void			ft_bzero(void *s, size_t n);
 int				ft_isspace(int c);
 int				ft_isdigit(int c);
-void			*ft_memset(void *s, int c, size_t n);
 void			ft_putendl_fd(char *s, int fd);
 void			ft_putstr_fd(char *s, int fd);
 size_t			ft_strlen(const char *s);

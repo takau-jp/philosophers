@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 14:22:02 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/17 20:26:08 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/01/22 00:10:40 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,20 @@
 # include <stdint.h>
 # include <pthread.h>
 # include <sys/time.h>
+# include <inttypes.h>
 
 # include "types.h"
 # include "utils.h"
 # include "error.h"
-# include "parse_arguments.h"
-# include "context.h"
-# include "simulate_philos.h"
-# include "philo_routine.h"
+# include "argument_parsing.h"
+# include "cleanup.h"
+# include "dining_philosophers_simulation.h"
+# include "initialization.h"
 
 # ifndef WRITE_BLOCK_SIZE
 #  define WRITE_BLOCK_SIZE 16384
 # endif
 
-# ifndef NO_EAT_LIMIT
-#  define NO_EAT_LIMIT -1
-# endif
+# define NO_EAT_LIMIT -1
 
 #endif

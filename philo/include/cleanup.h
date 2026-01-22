@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_arguments.h                                  :+:      :+:    :+:   */
+/*   cleanup.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/15 14:59:29 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/17 18:10:38 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/01/20 21:45:44 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/01/20 21:58:18 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSE_ARGUMENTS_H
-# define PARSE_ARGUMENTS_H
+#ifndef CLEANUP_H
+# define CLEANUP_H
 
-bool	parse_arguments(int argc, char *argv[], t_settings *settings);
-bool	is_int(char *str);
+void	cleanup(int n_philos, \
+			pthread_mutex_t *forks, t_philo *philos, t_simulation *simulation);
 
 #endif

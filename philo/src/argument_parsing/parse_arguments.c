@@ -6,23 +6,23 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 14:51:02 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/22 14:31:54 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/01/22 15:38:41 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
 bool	check_arguments(int argc, char *argv[]);
-void	assign_arguments(int argc, char *argv[], t_settings *settings);
+void	assign_arguments(int argc, char *argv[], t_simulation *simulation);
 
-bool	parse_arguments(int argc, char *argv[], t_settings *settings)
+bool	parse_arguments(int argc, char *argv[], t_simulation *simulation)
 {
 	if (check_arguments(argc, argv) == false)
 	{
 		print_error_log(ERROR_MSG_INVALID_ARGUMENTS);
 		return (false);
 	}
-	assign_arguments(argc, argv, settings);
+	assign_arguments(argc, argv, simulation);
 	return (true);
 }
 
@@ -46,14 +46,14 @@ bool	check_arguments(int argc, char *argv[])
 	return (true);
 }
 
-void	assign_arguments(int argc, char *argv[], t_settings *settings)
+void	assign_arguments(int argc, char *argv[], t_simulation *simulation)
 {
-	settings->n_philos = ft_atoi(argv[1]);
-	settings->time_to_die = ft_atoi(argv[2]);
-	settings->time_to_eat = ft_atoi(argv[3]);
-	settings->time_to_sleep = ft_atoi(argv[4]);
+	simulation->n_philos = ft_atoi(argv[1]);
+	simulation->time_to_die = ft_atoi(argv[2]);
+	simulation->time_to_eat = ft_atoi(argv[3]);
+	simulation->time_to_sleep = ft_atoi(argv[4]);
 	if (argc == 6)
-		settings->must_eat_counts = ft_atoi(argv[5]);
+		simulation->must_eat_counts = ft_atoi(argv[5]);
 	else
-		settings->must_eat_counts = NO_EAT_LIMIT;
+		simulation->must_eat_counts = NO_EAT_LIMIT;
 }

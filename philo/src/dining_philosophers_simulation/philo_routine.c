@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 16:54:57 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/22 02:00:23 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/01/22 16:15:39 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,24 @@
 
 void	*philo_routine(void *arg)
 {
-	t_philo	*philo;
+	t_philo			*philo;
+	t_simulation	*simulation;
 
 	philo = (t_philo *)arg;
-	pthread_mutex_lock(&(philo->simulation->state_mutex));
-	philo->last_meal.timeval = philo->simulation->start;
+	simulation = philo->simulation;
+	pthread_mutex_lock(&(simulation->state_mutex));
+	philo->last_meal.timeval = simulation->start;
 	philo->last_meal.timestamp = 0;
-	pthread_mutex_unlock(&(philo->simulation->state_mutex));
-	if (initial_thinking(philo) == false)
+	pthread_mutex_unlock(&(simulation->state_mutex));
+	if (initial_thinking(simulation, philo) == false)
 		return (NULL);
 	while (true)
 	{
-		if (eating(philo) == false)
+		if (eating(simulation, philo) == false)
 			break ;
-		if (sleeping(philo) == false)
+		if (sleeping(simulation, philo) == false)
 			break ;
-		if (thinking(philo) == false)
+		if (thinking(simulation, philo) == false)
 			break ;
 	}
 	return (NULL);

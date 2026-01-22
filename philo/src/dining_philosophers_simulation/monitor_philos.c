@@ -6,20 +6,17 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 16:54:01 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/22 15:26:02 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/01/22 15:45:09 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
 void	wait_until_next_ms(struct timeval clock);
-bool	check_philos(\
-			t_settings settings, t_philo *philos, t_simulation *simulation);
-void	check_philo(t_settings settings, t_simulation *simulation, \
-						t_philo *philo, bool *is_finish);
+bool	check_philos(t_simulation *simulation, t_philo *philos);
+void	check_philo(t_simulation *simulation, t_philo *philo, bool *is_finish);
 
-void	monitor_philos(\
-			t_settings settings, t_philo *philos, t_simulation *simulation)
+void	monitor_philos(t_simulation *simulation, t_philo *philos)
 {
 	struct timeval	clock;
 
@@ -28,7 +25,7 @@ void	monitor_philos(\
 	while (true)
 	{
 		gettimeofday(&clock, NULL);
-		if (check_philos(settings, philos, simulation) == false)
+		if (check_philos(simulation, philos) == false)
 			return ;
 		wait_until_next_ms(clock);
 	}
@@ -44,21 +41,20 @@ void	wait_until_next_ms(struct timeval clock)
 	}
 }
 
-bool	check_philos(\
-			t_settings settings, t_philo *philos, t_simulation *simulation)
+bool	check_philos(t_simulation *simulation, t_philo *philos)
 {
 	bool	is_finish;
 	int		i;
 
 	is_finish = true;
-	if (settings.must_eat_counts == NO_EAT_LIMIT)
+	if (simulation->must_eat_counts == NO_EAT_LIMIT)
 		is_finish = false;
 	i = 0;
-	while (i < settings.n_philos)
+	while (i < simulation->n_philos)
 	{
 		pthread_mutex_lock(&(simulation->state_mutex));
-		check_philo(settings, simulation, &(philos[i]), &is_finish);
-		if (is_finish == true && i == settings.n_philos - 1 \
+		check_philo(simulation, &(philos[i]), &is_finish);
+		if (is_finish == true && i == simulation->n_philos - 1 \
 			&& simulation->state == STATE_GOING)
 		{
 			simulation->state = STATE_END;
@@ -74,8 +70,7 @@ bool	check_philos(\
 	return (true);
 }
 
-void	check_philo(t_settings settings, t_simulation *simulation, \
-						t_philo *philo, bool *is_finish)
+void	check_philo(t_simulation *simulation, t_philo *philo, bool *is_finish)
 {
 	if (philo->last_meal.timestamp < 0)
 	{
@@ -87,7 +82,7 @@ void	check_philo(t_settings settings, t_simulation *simulation, \
 		simulation->state = STATE_ERROR;
 		return ;
 	}
-	if (has_time_elapsed(philo->last_meal.timeval, settings.time_to_die))
+	if (has_time_elapsed(philo->last_meal.timeval, simulation->time_to_die))
 	{
 		simulation->state = STATE_DEAD;
 		if (!print_log(\
@@ -96,7 +91,7 @@ void	check_philo(t_settings settings, t_simulation *simulation, \
 			print_error_log(ERROR_MSG_PRINT_STDOUT);
 		}
 	}
-	else if (settings.must_eat_counts > philo->eat_count)
+	else if (simulation->must_eat_counts > philo->eat_count)
 	{
 		*is_finish = false;
 	}

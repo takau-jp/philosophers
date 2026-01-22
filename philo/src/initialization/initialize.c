@@ -6,34 +6,44 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 17:24:08 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/22 01:54:23 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/01/22 15:50:59 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+bool			initialize_state_mutex(t_simulation *simulation);
 pthread_mutex_t	*initialize_forks(int n_philos);
 t_philo			*initialize_philos(\
-	t_settings *settings, pthread_mutex_t *forks, t_simulation *simulation);
-bool			initialize_state_mutex(t_simulation *simulation);
+	t_simulation *simulation, pthread_mutex_t *forks);
 
-bool	initialize(t_settings *settings, \
-			pthread_mutex_t **forks, t_philo **philos, t_simulation *simulation)
+bool	initialize(\
+	t_simulation *simulation, pthread_mutex_t **forks, t_philo **philos)
 {
-	*forks = initialize_forks(settings->n_philos);
-	if (*forks == NULL)
-	{
-		return (false);
-	}
-	*philos = initialize_philos(settings, *forks, simulation);
-	if (*philos == NULL)
-	{
-		cleanup(settings->n_philos, *forks, NULL, NULL);
-		return (false);
-	}
 	if (initialize_state_mutex(simulation) == false)
 	{
-		cleanup(settings->n_philos, *forks, *philos, NULL);
+		return (false);
+	}
+	*forks = initialize_forks(simulation->n_philos);
+	if (*forks == NULL)
+	{
+		cleanup(simulation, NULL, NULL);
+		return (false);
+	}
+	*philos = initialize_philos(simulation, *forks);
+	if (*philos == NULL)
+	{
+		cleanup(simulation, *forks, NULL);
+		return (false);
+	}
+	return (true);
+}
+
+bool	initialize_state_mutex(t_simulation *simulation)
+{
+	if (pthread_mutex_init(&(simulation->state_mutex), NULL) != 0)
+	{
+		print_error_log(ERROR_MSG_INIT_MUTEX);
 		return (false);
 	}
 	return (true);
@@ -66,25 +76,23 @@ pthread_mutex_t	*initialize_forks(int n_philos)
 	return (forks);
 }
 
-t_philo	*initialize_philos(\
-	t_settings *settings, pthread_mutex_t *forks, t_simulation *simulation)
+t_philo	*initialize_philos(t_simulation *simulation, pthread_mutex_t *forks)
 {
 	t_philo	*philos;
 	int		i;
 
-	philos = (t_philo *)malloc(sizeof(t_philo) * settings->n_philos);
+	philos = (t_philo *)malloc(sizeof(t_philo) * simulation->n_philos);
 	if (philos == NULL)
 	{
 		print_error_log(ERROR_MSG_MALLOC);
 		return (NULL);
 	}
 	i = 0;
-	while (i < settings->n_philos)
+	while (i < simulation->n_philos)
 	{
 		philos[i].id = i + 1;
 		philos[i].right = &(forks[i]);
-		philos[i].left = &(forks[(i + 1) % settings->n_philos]);
-		philos[i].settings = settings;
+		philos[i].left = &(forks[(i + 1) % simulation->n_philos]);
 		philos[i].simulation = simulation;
 		philos[i].last_meal.timestamp = -1;
 		philos[i].eat_count = 0;
@@ -92,14 +100,4 @@ t_philo	*initialize_philos(\
 		i++;
 	}
 	return (philos);
-}
-
-bool	initialize_state_mutex(t_simulation *simulation)
-{
-	if (pthread_mutex_init(&(simulation->state_mutex), NULL) != 0)
-	{
-		print_error_log(ERROR_MSG_INIT_MUTEX);
-		return (false);
-	}
-	return (true);
 }

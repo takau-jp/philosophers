@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 15:47:04 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/22 16:23:42 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/01/22 17:19:39 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ bool	eating(t_simulation *simulation, t_philo *philo)
 		return (false);
 	}
 	if (smart_sleep(philo->last_meal.timeval, \
-			simulation->time_to_sleep, simulation->time_to_die) == false)
+			simulation->time_to_eat, simulation->time_to_die) == false)
 	{
 		pthread_mutex_unlock(philo->right);
 		pthread_mutex_unlock(philo->left);
@@ -34,7 +34,7 @@ bool	eating(t_simulation *simulation, t_philo *philo)
 
 bool	end_eating(t_simulation *simulation, t_philo *philo)
 {
-	if (philo->left < philo->right)
+	if (philo->left > philo->right)
 	{
 		pthread_mutex_unlock(philo->left);
 		pthread_mutex_unlock(philo->right);

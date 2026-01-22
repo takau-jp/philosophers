@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 21:45:41 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/22 16:15:29 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/01/22 20:29:08 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,17 @@
 # define MSG_SLEEP "is sleeping"
 # define MSG_DIED "died"
 
+# define NO_BREAK -1
+
 bool		simulate_dining_philosophers(\
 				t_simulation *simulation, t_philo *philos);
 void		monitor_philos(\
 				t_simulation *simulation, t_philo *philos);
 void		*philo_routine(void *arg);
-bool		initial_thinking(t_simulation *simulation, t_philo *philo);
-bool		thinking(t_simulation *simulation, t_philo *philo);
+bool		initial_thinking(\
+				t_simulation *simulation, t_philo *philo, bool is_break_turn);
+bool		thinking(\
+				t_simulation *simulation, t_philo *philo, bool is_break_turn);
 bool		eating(t_simulation *simulation, t_philo *philo);
 bool		sleeping(t_simulation *simulation, t_philo *philo);
 t_timestamp	get_timestamp(struct timeval base);

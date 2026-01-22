@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 15:46:31 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/22 16:16:35 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/01/22 20:28:46 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,24 @@ bool	take_a_fork(\
 bool	take_forks(t_simulation *simulation, t_philo *philo, \
 			pthread_mutex_t *first_fork, pthread_mutex_t *second_fork);
 
-bool	initial_thinking(t_simulation *simulation, t_philo *philo)
+bool	initial_thinking(\
+			t_simulation *simulation, t_philo *philo, bool is_break_turn)
 {
 	t_timestamp	now;
+	int64_t		break_time;
 
 	if (logger(simulation, philo, &now, MSG_THINK) == false)
 		return (false);
-	if (philo->id % 2 == 0)
+	break_time = 0;
+	if (is_break_turn == true && philo->id == 2)
+		break_time = simulation->time_to_eat * 1.5;
+	else if (is_break_turn == true && philo->id == 1)
+		break_time = simulation->time_to_eat;
+	else if (philo->id % 2 == 0)
+		break_time = simulation->time_to_eat / 2;
+	if (break_time > 0)
 	{
-		if (smart_sleep(simulation->start, simulation->time_to_eat / 2, \
+		if (smart_sleep(philo->last_meal.timeval, break_time, \
 				simulation->time_to_die) == false)
 		{
 			return (false);
@@ -33,7 +42,7 @@ bool	initial_thinking(t_simulation *simulation, t_philo *philo)
 	}
 	if (philo->right == philo->left)
 		return (take_a_fork(simulation, philo, philo->right));
-	if (philo->left < philo->right)
+	if (philo->left > philo->right)
 		return (take_forks(simulation, philo, philo->left, philo->right));
 	return (take_forks(simulation, philo, philo->right, philo->left));
 }
@@ -55,13 +64,22 @@ bool	take_a_fork(\
 	return (false);
 }
 
-bool	thinking(t_simulation *simulation, t_philo *philo)
+bool	thinking(t_simulation *simulation, t_philo *philo, bool is_break_turn)
 {
 	t_timestamp	now;
 
 	if (logger(simulation, philo, &now, MSG_THINK) == false)
 		return (false);
-	if (philo->left < philo->right)
+	if (is_break_turn == true)
+	{
+		if (smart_sleep(philo->last_meal.timeval, \
+				simulation->time_to_eat * 2.5, \
+				simulation->time_to_die) == false)
+		{
+			return (false);
+		}
+	}
+	if (philo->left > philo->right)
 		return (take_forks(simulation, philo, philo->left, philo->right));
 	return (take_forks(simulation, philo, philo->right, philo->left));
 }

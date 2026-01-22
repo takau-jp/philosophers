@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 14:37:45 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/22 14:33:53 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/01/22 20:37:35 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # define BLUE "\033[0;94m"
 # define DEF_COLOR "\033[0m"
 
-# define ERROR_MSG_INVALID_ARGUMENTS "Invalid Arguments\n\
+# define ERROR_MSG_INVALID_ARGUMENTS "Invalid Argument\n\
 \033[0;92m[Usage]: \033[0m\
 \033[0;94mAll arguments must be positive integers (1 to INT_MAX)\033[0m\n\
 Arguments: \n\

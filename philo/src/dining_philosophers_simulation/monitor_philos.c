@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 16:54:01 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/22 02:31:08 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/01/22 15:26:02 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,9 @@ void	check_philo(t_settings settings, t_simulation *simulation, \
 		simulation->state = STATE_DEAD;
 		if (!print_log(\
 			get_timestamp(simulation->start).timestamp, philo->id, MSG_DIED))
+		{
 			print_error_log(ERROR_MSG_PRINT_STDOUT);
+		}
 	}
 	else if (settings.must_eat_counts > philo->eat_count)
 	{

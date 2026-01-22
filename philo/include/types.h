@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 15:46:51 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/22 16:05:09 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/01/22 16:39:28 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 # define TYPES_H
 
 // struct
-typedef struct s_simulation		t_simulation;
-typedef struct s_timestamp		t_timestamp;
-typedef struct s_philo			t_philo;
+typedef struct s_simulation	t_simulation;
+typedef struct s_timestamp	t_timestamp;
+typedef struct s_philo		t_philo;
 
 // enum
 typedef enum e_state		t_state;

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 14:51:02 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/20 23:46:43 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/01/22 14:31:54 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ bool	parse_arguments(int argc, char *argv[], t_settings *settings)
 {
 	if (check_arguments(argc, argv) == false)
 	{
-		print_error_log(ARGUMENT_ERROR);
+		print_error_log(ERROR_MSG_INVALID_ARGUMENTS);
 		return (false);
 	}
 	assign_arguments(argc, argv, settings);

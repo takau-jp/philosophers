@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 17:10:01 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/21 00:03:17 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/01/21 23:58:34 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	cleanup_forks(int n_philos, pthread_mutex_t *forks);
 void	cleanup_philos(t_philo *philos);
-void	cleanup_simulation_mutex(t_simulation *simulation);
+void	cleanup_state_mutex(t_simulation *simulation);
 
 void	cleanup(int n_philos, \
 			pthread_mutex_t *forks, t_philo *philos, t_simulation *simulation)
@@ -24,7 +24,7 @@ void	cleanup(int n_philos, \
 	if (philos != NULL)
 		cleanup_philos(philos);
 	if (simulation != NULL)
-		cleanup_simulation_mutex(simulation);
+		cleanup_state_mutex(simulation);
 }
 
 void	cleanup_forks(int n_philos, pthread_mutex_t *forks)
@@ -45,7 +45,7 @@ void	cleanup_philos(t_philo *philos)
 	free(philos);
 }
 
-void	cleanup_simulation_mutex(t_simulation *simulation)
+void	cleanup_state_mutex(t_simulation *simulation)
 {
-	pthread_mutex_destroy(&(simulation->simulation_mutex));
+	pthread_mutex_destroy(&(simulation->state_mutex));
 }

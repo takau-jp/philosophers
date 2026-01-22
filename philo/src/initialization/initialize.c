@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 17:24:08 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/21 00:00:32 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/01/22 01:54:23 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 pthread_mutex_t	*initialize_forks(int n_philos);
 t_philo			*initialize_philos(\
 	t_settings *settings, pthread_mutex_t *forks, t_simulation *simulation);
-bool			initialize_simulation_mutex(t_simulation *simulation);
+bool			initialize_state_mutex(t_simulation *simulation);
 
 bool	initialize(t_settings *settings, \
 			pthread_mutex_t **forks, t_philo **philos, t_simulation *simulation)
@@ -31,7 +31,7 @@ bool	initialize(t_settings *settings, \
 		cleanup(settings->n_philos, *forks, NULL, NULL);
 		return (false);
 	}
-	if (initialize_simulation_mutex(simulation) == false)
+	if (initialize_state_mutex(simulation) == false)
 	{
 		cleanup(settings->n_philos, *forks, *philos, NULL);
 		return (false);
@@ -86,7 +86,7 @@ t_philo	*initialize_philos(\
 		philos[i].left = &(forks[(i + 1) % settings->n_philos]);
 		philos[i].settings = settings;
 		philos[i].simulation = simulation;
-		philos[i].last_meal_timestamp = 0;
+		philos[i].last_meal.timestamp = -1;
 		philos[i].eat_count = 0;
 		philos[i].is_error = false;
 		i++;
@@ -94,13 +94,12 @@ t_philo	*initialize_philos(\
 	return (philos);
 }
 
-bool	initialize_simulation_mutex(t_simulation *simulation)
+bool	initialize_state_mutex(t_simulation *simulation)
 {
-	if (pthread_mutex_init(&(simulation->simulation_mutex), NULL) != 0)
+	if (pthread_mutex_init(&(simulation->state_mutex), NULL) != 0)
 	{
 		print_error_log(ERROR_MSG_INIT_MUTEX);
 		return (false);
 	}
-	simulation->state = STATE_READY;
 	return (true);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: stanaka2 < stanaka2@student.42tokyo.jp>    +#+  +:+       +#+         #
+#    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/24 09:06:59 by stanaka2          #+#    #+#              #
-#    Updated: 2026/01/21 10:26:41 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/01/22 01:45:31 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,17 +86,16 @@ SRCS	+=	parse_arguments.c \
 SRCS	+=	print_error_log.c
 
 # utils
-SRCS	+=	ft_abs_ulong.c		ft_atoi.c		ft_bzero.c		ft_isdigit.c \
-			ft_isspace.c		ft_memset.c		ft_putendl_fd.c		ft_putstr_fd.c \
-			ft_strlen.c
+SRCS	+=	ft_abs_ulong.c		ft_atoi.c		ft_isdigit.c		ft_isspace.c \
+			ft_putendl_fd.c		ft_putstr_fd.c		ft_strlen.c
 
 # initialization
 SRCS	+=	initialize.c
 
 # dining_philosophers_simulation
 SRCS	+=	monitor_philos.c		philo_routine.c		simulate_dining_philosophers.c \
-			eating.c		get_timestamp.c		print_log.c		sleeping.c \
-			smart_sleep.c		thinking.c
+			eating.c		get_timestamp.c		has_time_elapsed.c		logger.c \
+			sleeping.c		smart_sleep.c		thinking.c
 
 # cleanup
 SRCS	+=	cleanup.c

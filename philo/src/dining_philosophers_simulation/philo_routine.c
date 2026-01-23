@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 16:54:57 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/22 20:35:36 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/01/23 16:35:54 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	update_break_turn_count(int break_turn_span, int *break_turn_count)
 {
 	if (*break_turn_count == NO_BREAK)
 		return ;
-	if (break_turn_count == 0)
+	if (*break_turn_count == 0)
 		*break_turn_count = break_turn_span;
-	(*break_turn_count)--;
+	*break_turn_count -= 1;
 }

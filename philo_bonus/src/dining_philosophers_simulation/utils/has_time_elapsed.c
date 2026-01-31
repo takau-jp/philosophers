@@ -6,11 +6,11 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 00:42:09 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/22 01:17:43 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/01/31 14:56:14 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
 bool	has_time_elapsed(struct timeval base, int64_t ms_time)
 {

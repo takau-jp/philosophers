@@ -6,11 +6,11 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 15:46:31 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/23 16:39:51 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/01/31 14:56:14 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
 bool	take_a_fork(\
 			t_simulation *simulation, t_philo *philo, pthread_mutex_t *fork);

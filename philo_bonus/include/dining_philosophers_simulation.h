@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 21:45:41 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/22 20:29:08 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/01/31 23:20:20 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@
 # define MSG_SLEEP "is sleeping"
 # define MSG_DIED "died"
 
-# define NO_BREAK -1
+# define SIMULATION_DEAD 1
+# define SIMULATION_COMPLETE 1
+# define SIMULATION_ERROR 1
 
 bool		simulate_dining_philosophers(\
 				t_simulation *simulation, t_philo *philos);

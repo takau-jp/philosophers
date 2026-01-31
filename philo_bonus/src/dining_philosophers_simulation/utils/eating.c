@@ -6,11 +6,11 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 15:47:04 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/22 17:19:39 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/01/31 14:56:14 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
 bool	end_eating(t_simulation *simulation, t_philo *philo);
 

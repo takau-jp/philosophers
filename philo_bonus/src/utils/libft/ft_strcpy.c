@@ -1,19 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_error_log.c                                  :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/20 23:46:50 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/31 14:56:14 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/01/31 18:26:45 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/01/31 18:27:01 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
-void	print_error_log(char *error)
+char	*ft_strcpy(char *dest, const char *src)
 {
-	ft_putendl_fd(RED "ERROR" DEF_COLOR, STDERR_FILENO);
-	ft_putendl_fd(error, STDERR_FILENO);
+	char	*d;
+
+	d = dest;
+	while (*src)
+		*dest++ = *src++;
+	*dest = '\0';
+	return (d);
 }

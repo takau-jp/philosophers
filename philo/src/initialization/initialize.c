@@ -6,14 +6,14 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 17:24:08 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/22 15:50:59 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/01/30 15:28:05 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
 bool			initialize_state_mutex(t_simulation *simulation);
-pthread_mutex_t	*initialize_forks(int n_philos);
+pthread_mutex_t	*initialize_forks(int number_of_philos);
 t_philo			*initialize_philos(\
 	t_simulation *simulation, pthread_mutex_t *forks);
 
@@ -24,7 +24,7 @@ bool	initialize(\
 	{
 		return (false);
 	}
-	*forks = initialize_forks(simulation->n_philos);
+	*forks = initialize_forks(simulation->number_of_philos);
 	if (*forks == NULL)
 	{
 		cleanup(simulation, NULL, NULL);
@@ -49,19 +49,20 @@ bool	initialize_state_mutex(t_simulation *simulation)
 	return (true);
 }
 
-pthread_mutex_t	*initialize_forks(int n_philos)
+pthread_mutex_t	*initialize_forks(int number_of_philos)
 {
 	pthread_mutex_t	*forks;
 	int				i;
 
-	forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * n_philos);
+	forks = (pthread_mutex_t *)malloc(\
+				sizeof(pthread_mutex_t) * number_of_philos);
 	if (forks == NULL)
 	{
 		print_error_log(ERROR_MSG_MALLOC);
 		return (NULL);
 	}
 	i = 0;
-	while (i < n_philos)
+	while (i < number_of_philos)
 	{
 		if (pthread_mutex_init(&(forks[i]), NULL) != 0)
 		{
@@ -81,18 +82,18 @@ t_philo	*initialize_philos(t_simulation *simulation, pthread_mutex_t *forks)
 	t_philo	*philos;
 	int		i;
 
-	philos = (t_philo *)malloc(sizeof(t_philo) * simulation->n_philos);
+	philos = (t_philo *)malloc(sizeof(t_philo) * simulation->number_of_philos);
 	if (philos == NULL)
 	{
 		print_error_log(ERROR_MSG_MALLOC);
 		return (NULL);
 	}
 	i = 0;
-	while (i < simulation->n_philos)
+	while (i < simulation->number_of_philos)
 	{
 		philos[i].id = i + 1;
 		philos[i].right = &(forks[i]);
-		philos[i].left = &(forks[(i + 1) % simulation->n_philos]);
+		philos[i].left = &(forks[(i + 1) % simulation->number_of_philos]);
 		philos[i].simulation = simulation;
 		philos[i].last_meal.timestamp = -1;
 		philos[i].eat_count = 0;

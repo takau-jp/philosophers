@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 15:46:51 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/30 15:27:29 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/01/31 14:29:46 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,7 @@
 typedef struct s_simulation	t_simulation;
 typedef struct s_timestamp	t_timestamp;
 typedef struct s_philo		t_philo;
-
-// enum
-typedef enum e_state		t_state;
-
-enum e_state
-{
-	STATE_READY,
-	STATE_GOING,
-	STATE_END,
-	STATE_DEAD,
-	STATE_ERROR,
-};
+typedef struct s_philo_pid	t_philo_pid;
 
 struct s_simulation
 {
@@ -38,8 +27,9 @@ struct s_simulation
 	int64_t			time_to_sleep;
 	int				must_eat_counts;
 	struct timeval	start;
-	pthread_mutex_t	state_mutex;
-	t_state			state;
+	sem_t			*fork_semaphore;
+	sem_t			*log_semaphore;
+	sem_t			*eat_count_semaphore;
 };
 
 struct s_timestamp
@@ -51,13 +41,16 @@ struct s_timestamp
 struct s_philo
 {
 	int				id;
-	pthread_t		thread;
-	pthread_mutex_t	*right;
-	pthread_mutex_t	*left;
-	t_simulation	*simulation;
+	int				queue;
+	sem_t			*meal_time_semaphore;
 	t_timestamp		last_meal;
 	int64_t			eat_count;
-	bool			is_error;
+};
+
+struct s_philo_pid
+{
+	int		id;
+	pid_t	pid;
 };
 
 #endif

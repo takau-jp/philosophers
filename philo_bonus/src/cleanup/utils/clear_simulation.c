@@ -1,36 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*   clear_simulation.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/25 13:07:29 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/15 15:28:46 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/02/01 15:42:13 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/02/01 21:07:42 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
-void	ft_putendl_fd(char *s, int fd)
+void	clear_simulation(t_simulation *simulation)
 {
-	size_t	len;
-	size_t	chunk;
-	ssize_t	write_res;
-
-	if (!s)
-		return ;
-	len = ft_strlen(s);
-	while (len)
+	sem_close(simulation->fork_sem);
+	sem_close(simulation->simulation_sem);
+	sem_close(simulation->end_sem);
+	if (simulation->must_eat_counts != NO_EAT_LIMIT)
 	{
-		chunk = WRITE_BLOCK_SIZE;
-		if (len < WRITE_BLOCK_SIZE)
-			chunk = len;
-		write_res = write(fd, s, chunk);
-		if (write_res <= 0)
-			return ;
-		s += write_res;
-		len -= write_res;
+		sem_close(simulation->eat_count_sem);
 	}
-	write(fd, "\n", 1);
 }

@@ -6,11 +6,11 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 14:51:02 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/30 15:27:29 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/01/31 14:56:14 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
 bool	check_arguments(int argc, char *argv[]);
 void	assign_arguments(int argc, char *argv[], t_simulation *simulation);

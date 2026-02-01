@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 14:37:45 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/22 20:37:35 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/02/01 22:16:56 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ arg[4]: \033[0;93mtime_to_sleep\033[0m\n\
 arg[5]: \033[0;93mnumber_of_times_each_philosopher_must_eat\033[0m (optional)"
 
 # define ERROR_MSG_MALLOC "Failed to allocate memory"
-# define ERROR_MSG_INIT_MUTEX "Failed to initialize mutex object"
+# define ERROR_MSG_INIT_MUTEX "Failed to initialize semaphore"
+# define ERROR_MSG_CREATE_PROCESS "Failed to create process"
 # define ERROR_MSG_CREATE_PTHREAD "Failed to create pthread"
 # define ERROR_MSG_PRINT_STDOUT "Failed to print on stdout"
 

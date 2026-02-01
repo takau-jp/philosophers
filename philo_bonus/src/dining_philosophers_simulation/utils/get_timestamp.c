@@ -6,11 +6,11 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 23:12:57 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/22 02:18:45 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/01/31 14:56:14 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
 t_timestamp	get_timestamp(struct timeval base)
 {

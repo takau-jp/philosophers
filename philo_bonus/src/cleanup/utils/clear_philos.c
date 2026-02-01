@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   clear_philos.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/25 13:08:41 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/15 15:28:40 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/02/01 15:42:54 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/02/01 22:38:47 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
-void	ft_putstr_fd(char *s, int fd)
+void	clear_philos(\
+	t_philo *philos, int number_of_philos)
 {
-	size_t	len;
-	size_t	chunk;
-	ssize_t	write_res;
+	int	i;
 
-	if (!s)
+	if (philos == NULL)
 		return ;
-	len = ft_strlen(s);
-	while (len)
+	i = 0;
+	while (i < number_of_philos)
 	{
-		chunk = WRITE_BLOCK_SIZE;
-		if (len < WRITE_BLOCK_SIZE)
-			chunk = len;
-		write_res = write(fd, s, chunk);
-		if (write_res <= 0)
-			return ;
-		s += write_res;
-		len -= write_res;
+		sem_close(philos[i].access_sem);
+		sem_close(philos[i].used_access_sem);
+		i++;
 	}
+	free(philos);
 }

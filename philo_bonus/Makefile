@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/24 09:06:59 by stanaka2          #+#    #+#              #
-#    Updated: 2026/01/30 15:55:46 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/02/01 22:29:02 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,18 +63,17 @@ INCLUDE		= -I $(INCLUDE_DIR)
 SRC_DIRS	=	src \
 				$(addprefix src/, \
 					argument_parsing argument_parsing/utils \
-					cleanup \
+					cleanup cleanup/utils \
 					dining_philosophers_simulation dining_philosophers_simulation/utils \
 					error \
-					initialization \
-					utils \
+					initialization initialization/utils \
+					utils utils/libft\
 				)
 
 
 # -------------------------- #
 #        Source Files        #
 # -------------------------- #
-
 
 SRCS	=	main.c
 
@@ -86,19 +85,21 @@ SRCS	+=	parse_arguments.c \
 SRCS	+=	print_error_log.c
 
 # utils
-SRCS	+=	ft_abs_ulong.c		ft_atoi.c		ft_isdigit.c		ft_isspace.c \
-			ft_putendl_fd.c		ft_putstr_fd.c		ft_strlen.c
+SRCS	+=	create_name.c \
+			ft_abs_ulong.c  ft_calloc.c   ft_isspace.c     ft_putstr_fd.c  ft_strlen.c \
+			ft_atoi.c       ft_isdigit.c  ft_putendl_fd.c  ft_strcpy.c
 
 # initialization
-SRCS	+=	initialize.c
+SRCS	+=	initialize.c \
+			initialize_philos.c  initialize_simulation.c
 
 # dining_philosophers_simulation
-SRCS	+=	monitor_philos.c		philo_routine.c		simulate_dining_philosophers.c \
-			eating.c		get_timestamp.c		has_time_elapsed.c		logger.c \
-			sleeping.c		smart_sleep.c		thinking.c
+SRCS	+=	death_monitor_routine.c      philo_routine.c		eat_count_monitor_routine.c  simulate_dining_philosophers.c  waiter_routine.c \
+			eating.c  get_timestamp.c  has_time_elapsed.c  logger.c  sleeping.c  smart_sleep.c  thinking.c
 
 # cleanup
-SRCS	+=	cleanup.c
+SRCS	+=	cleanup.c  clear_for_child_process.c \
+			cleanup_philos.c  cleanup_simulation.c  clear_philos.c  clear_simulation.c
 
 
 # -------------------------- #

@@ -29,7 +29,7 @@ void	cleanup_philos(t_philo *philos, int number_of_philos)
 
 void	cleanup_philo(t_philo *philo, int index)
 {
-	char name[20];
+	char	name[20];
 
 	if (philo->access_sem != SEM_FAILED)
 	{

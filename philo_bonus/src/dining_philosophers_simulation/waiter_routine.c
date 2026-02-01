@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 15:09:52 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/02/01 22:57:53 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/02/02 00:45:19 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,11 @@ void	waiter_routine(t_simulation *simulation, t_philo *philos)
 {
 	int	i;
 	int	fork_count;
-	// int	test;
 
 	i = 0;
 	fork_count = 0;
 	while (true)
 	{
-		// sem_getvalue(simulation->fork_sem, &test);
-		// printf("FORK: %d\n", test);
 		sem_wait(simulation->fork_sem);
 		sem_post(simulation->fork_sem);
 		sem_post(philos[i].access_sem);

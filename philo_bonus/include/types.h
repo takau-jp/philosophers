@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 15:46:51 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/02/01 22:36:22 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/02/02 01:10:33 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 // struct
 typedef struct s_simulation		t_simulation;
+typedef struct s_pids			t_pids;
 typedef struct s_timestamp		t_timestamp;
 typedef struct s_philo			t_philo;
 typedef struct s_pthread_arg	t_pthread_arg;
@@ -31,6 +32,13 @@ struct s_simulation
 	sem_t			*simulation_sem;
 	sem_t			*end_sem;
 	sem_t			*eat_count_sem;
+};
+
+struct s_pids
+{
+	pid_t	*philos;
+	pid_t	waiter;
+	pid_t	eat_count_monitor;
 };
 
 struct s_timestamp

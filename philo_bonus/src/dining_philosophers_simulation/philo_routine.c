@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 21:19:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/02/01 22:43:32 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/02/02 00:50:29 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	philo_routine(t_simulation *simulation, t_philo *philo)
 	if (pthread_create(&pthread, NULL, death_monitor_routine, &arg) != 0)
 	{
 		sem_post(simulation->end_sem);
+		print_error_log(ERROR_MSG_CREATE_PTHREAD);
 		return ;
 	}
 	while (true)
@@ -35,5 +36,3 @@ void	philo_routine(t_simulation *simulation, t_philo *philo)
 	}
 	pthread_join(pthread, NULL);
 }
-
-

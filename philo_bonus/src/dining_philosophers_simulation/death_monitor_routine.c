@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 19:56:59 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/02/01 23:15:38 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/02/02 00:50:16 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	*death_monitor_routine(void *arg)
 		sem_wait(simulation->simulation_sem);
 		if (has_time_elapsed(philo->last_meal.timeval, simulation->time_to_die))
 		{
-			if (!print_log(\
-				get_timestamp(simulation->start).timestamp, philo->id, MSG_DIED))
+			if (print_log(get_timestamp(simulation->start).timestamp, \
+					philo->id, MSG_DIED) == false)
 			{
 				print_error_log(ERROR_MSG_PRINT_STDOUT);
 			}

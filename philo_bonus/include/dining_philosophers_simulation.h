@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 21:45:41 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/02/01 22:16:00 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/02/02 01:02:45 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,8 @@
 # define MSG_SLEEP "is sleeping"
 # define MSG_DIED "died"
 
-
 bool		simulate_dining_philosophers(t_simulation *simulation, \
-	pid_t *philo_pids, t_philo *philos);
+	t_pids *pids, t_philo *philos);
 void		philo_routine(t_simulation *simulation, t_philo *philo);
 bool		thinking(t_simulation *simualation, t_philo *philo);
 bool		eating(t_simulation *simualation, t_philo *philo);
@@ -36,6 +35,5 @@ bool		logger(t_simulation *simulation, t_philo *philo, \
 bool		print_log(int64_t timestamp, int philo_id, char *msg);
 void		waiter_routine(t_simulation *simulation, t_philo *philos);
 void		eat_count_monitor_routine(t_simulation *simulation);
-
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 15:46:51 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/31 22:12:24 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/02/01 22:36:22 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 typedef struct s_simulation		t_simulation;
 typedef struct s_timestamp		t_timestamp;
 typedef struct s_philo			t_philo;
-typedef struct s_philo_pid		t_philo_pid;
+typedef struct s_pthread_arg	t_pthread_arg;
 
 struct s_simulation
 {
@@ -28,7 +28,8 @@ struct s_simulation
 	int				must_eat_counts;
 	struct timeval	start;
 	sem_t			*fork_sem;
-	sem_t			*log_sem;
+	sem_t			*simulation_sem;
+	sem_t			*end_sem;
 	sem_t			*eat_count_sem;
 };
 
@@ -42,21 +43,15 @@ struct s_philo
 {
 	int			id;
 	sem_t		*access_sem;
-	sem_t		*used_sem;
-	sem_t		*meal_time_sem;
+	sem_t		*used_access_sem;
 	t_timestamp	last_meal;
 	int64_t		eat_count;
 };
 
-struct s_philo_pid
+struct s_pthread_arg
 {
-	int		id;
-	pid_t	pid;
+	t_simulation	*simulation;
+	t_philo			*philo;
 };
-
-enum e_exit_state
-{
-	EXIT
-}
 
 #endif

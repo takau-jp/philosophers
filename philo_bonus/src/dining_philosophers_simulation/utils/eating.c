@@ -5,55 +5,29 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/20 15:47:04 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/31 14:56:14 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/02/01 16:33:51 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/02/01 22:59:52 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
-bool	end_eating(t_simulation *simulation, t_philo *philo);
-
-bool	eating(t_simulation *simulation, t_philo *philo)
+bool	eating(t_simulation *simualation, t_philo *philo)
 {
-	if (logger(simulation, philo, &(philo->last_meal), MSG_EAT) == false)
+	if (logger(simualation, philo, &(philo->last_meal), MSG_EAT) == false)
+		return (false);
+	if (smart_sleep(philo->last_meal.timeval, simualation->time_to_eat, \
+			simualation->time_to_die) == false)
 	{
-		pthread_mutex_unlock(philo->right);
-		pthread_mutex_unlock(philo->left);
 		return (false);
 	}
-	if (smart_sleep(philo->last_meal.timeval, \
-			simulation->time_to_eat, simulation->time_to_die) == false)
+	sem_post(simualation->fork_sem);
+	sem_post(simualation->fork_sem);
+	if (simualation->must_eat_counts != NO_EAT_LIMIT)
 	{
-		pthread_mutex_unlock(philo->right);
-		pthread_mutex_unlock(philo->left);
-		return (false);
-	}
-	return (end_eating(simulation, philo));
-}
-
-bool	end_eating(t_simulation *simulation, t_philo *philo)
-{
-	if (philo->left > philo->right)
-	{
-		pthread_mutex_unlock(philo->left);
-		pthread_mutex_unlock(philo->right);
-	}
-	else
-	{
-		pthread_mutex_unlock(philo->right);
-		pthread_mutex_unlock(philo->left);
-	}
-	if (simulation->must_eat_counts > 0)
-	{
-		pthread_mutex_lock(&(simulation->state_mutex));
-		if (simulation->state != STATE_GOING)
-		{
-			pthread_mutex_unlock(&(simulation->state_mutex));
-			return (false);
-		}
 		philo->eat_count++;
-		pthread_mutex_unlock(&(simulation->state_mutex));
+		if (philo->eat_count == simualation->must_eat_counts)
+			sem_post(simualation->eat_count_sem);
 	}
 	return (true);
 }

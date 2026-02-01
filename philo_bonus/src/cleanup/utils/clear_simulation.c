@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cleanup_semaphore.c                                :+:      :+:    :+:   */
+/*   clear_simulation.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/31 19:44:26 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/31 22:12:07 by stanaka2         ###   ########.fr       */
+/*   Created: 2026/02/01 15:42:13 by stanaka2          #+#    #+#             */
+/*   Updated: 2026/02/01 21:07:42 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
-void	cleanup_semaphore(t_simulation *simulation)
+void	clear_simulation(t_simulation *simulation)
 {
 	sem_close(simulation->fork_sem);
-	sem_unlink(simulation->fork_sem);
-	sem_close(simulation->log_sem);
-	sem_unlink(simulation->log_sem);
+	sem_close(simulation->simulation_sem);
+	sem_close(simulation->end_sem);
 	if (simulation->must_eat_counts != NO_EAT_LIMIT)
 	{
 		sem_close(simulation->eat_count_sem);
-		sem_unlink(simulation->eat_count_sem);
 	}
 }

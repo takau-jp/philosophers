@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 14:22:02 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/31 23:10:24 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/02/01 19:15:23 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # include <semaphore.h>
 # include <sys/wait.h>
 # include <signal.h>
+# include <pthread.h>
 
 # include "types.h"
 # include "utils.h"

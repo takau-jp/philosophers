@@ -6,32 +6,24 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 23:59:55 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/01/31 14:56:14 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/02/01 23:30:12 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
 bool	logger(t_simulation *simulation, t_philo *philo, \
-				t_timestamp *timestamp, char *msg)
+				t_timestamp *now, char *msg)
 {
-	pthread_mutex_lock(&(simulation->state_mutex));
-	if (simulation->state != STATE_GOING \
-		|| has_time_elapsed(philo->last_meal.timeval, \
-								simulation->time_to_die) == true)
-	{
-		pthread_mutex_unlock(&(simulation->state_mutex));
-		return (false);
-	}
-	*timestamp = get_timestamp(simulation->start);
-	if (print_log(timestamp->timestamp, philo->id, msg) == false)
+	sem_wait(simulation->simulation_sem);
+	*now = get_timestamp(simulation->start);
+	if (print_log(now->timestamp, philo->id, msg) == false)
 	{
 		print_error_log(ERROR_MSG_PRINT_STDOUT);
-		philo->is_error = true;
-		pthread_mutex_unlock(&(simulation->state_mutex));
+		sem_post(simulation->end_sem);
 		return (false);
 	}
-	pthread_mutex_unlock(&(simulation->state_mutex));
+	sem_post(simulation->simulation_sem);
 	return (true);
 }
 

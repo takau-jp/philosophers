@@ -6,7 +6,7 @@
 #    By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/24 09:06:59 by stanaka2          #+#    #+#              #
-#    Updated: 2026/02/01 22:29:02 by stanaka2         ###   ########.fr        #
+#    Updated: 2026/02/02 16:51:22 by stanaka2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -177,11 +177,11 @@ norm:
 # -------------------------- #
 
 clean:
-	@$(RM) $(OBJS) $(DEPS) $(B_OBJS) $(B_DEPS)
+	@$(RM) $(OBJS) $(DEPS)
 	@echo -e "[PHILO_BONUS] $(BLUE)Deleted Compiled Files$(DEF_COLOR): *.o *.d"
 
 fclean:
-	@$(RM) $(OBJS) $(DEPS) $(B_OBJS) $(B_DEPS)
+	@$(RM) $(OBJS) $(DEPS)
 	@echo -e "[PHILO_BONUS] $(BLUE)Deleted Compiled Files$(DEF_COLOR): *.o *.d"
 	@$(RM) -r $(NAME) $(OBJ_DIR) $(DEP_DIR)
 	@echo -e "[PHILO_BONUS] $(BLUE)Deleted Target File and Object File Dir$(DEF_COLOR): $(NAME) $(OBJ_DIR) $(DEP_DIR)"

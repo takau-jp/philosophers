@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 20:59:27 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/02/02 01:09:30 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/02/02 16:04:29 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,4 +124,6 @@ void	kill_all_process(t_simulation *simulation, t_pids *pids)
 		kill(pids->waiter, SIGTERM);
 	if (pids->eat_count_monitor > 0)
 		kill(pids->eat_count_monitor, SIGTERM);
+	while (wait(NULL) != -1)
+		;
 }

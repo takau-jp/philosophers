@@ -6,7 +6,7 @@
 /*   By: stanaka2 <stanaka2@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 19:07:25 by stanaka2          #+#    #+#             */
-/*   Updated: 2026/02/02 01:33:17 by stanaka2         ###   ########.fr       */
+/*   Updated: 2026/02/03 12:33:04 by stanaka2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ bool	initialize_philos(t_philo **philos, int number_of_philos)
 
 bool	initialize_philo(t_philo *philo, int index)
 {
-	char	name[20];
+	char	name[30];
 
 	create_name(name, "access_", index);
 	sem_unlink(name);
